@@ -15,8 +15,8 @@ SMODS.ConsumableType {
     primary_colour = HEX('FFFFFF'),
     secondary_colour = HEX('888888'),
     loc_txt = {
-        name = 'Designer', -- used on card type badges
-        collection = 'Designer Cards', -- label for the button to access the collection
+        name = 'Studio', -- used on card type badges
+        collection = 'Studio Cards', -- label for the button to access the collection
         undiscovered = { -- description for undiscovered cards in the collection
             name = 'Placeholder',
             text = { 'Placeholder' },

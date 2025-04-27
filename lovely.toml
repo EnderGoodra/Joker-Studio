@@ -1,0 +1,17 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = -9
+
+[[patches]]
+[patches.pattern]
+target = "non-existant-target-file"
+pattern = '''target'''
+position = "at"
+payload = '''replace'''
+match_indent = false
+
+
+
+
+

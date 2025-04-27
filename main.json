@@ -1,0 +1,18 @@
+{
+	"id": "egwork",
+	"name": "Workshop",
+	"display_name": "Workshop",
+	"author": ["EnderGoodra"],
+	"description": "What, you're bored with such a \"limited\" set of Jokers?\nFine, then do it yourself",
+	"prefix": "egwork",
+	"main_file": "main.lua",
+	"priority": 0,
+	"badge_colour": "888888",
+	"badge_text_colour": "ffffff",
+	"version": "1.0.0a",
+	"dependencies": [
+		"Steamodded (>>1.0.0~ALPHA-1304a)",
+		"Lovely (>=0.7)",
+		"Balatro (>=1.*)"
+	]
+}

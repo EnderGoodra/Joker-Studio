@@ -1,5 +1,6 @@
 return {
 	["palette_lock"] = false,
+	["run_reset"] = true,
 	["custom_jokers"] = {
 		["joker1"] = {
 			["in_use"] = false,

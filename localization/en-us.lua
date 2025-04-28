@@ -150,6 +150,12 @@ return {
                 "Lower tier Joker Studio",
                 "editors have fewer colours"
             },
+            conf_run_reset = "Reset each Run",
+            conf_run_reset_desc = {
+                "Custom Joker data is reset",
+                "when starting a new run",
+                "(Disabling this may be unbalanced)"
+            },
         }
     }
 }

@@ -78,6 +78,26 @@ CustomJokerConditions = {
     -- [5] = nil,
 }
 
+local openFiles = {
+    "ui.lua",
+    "jokers.lua",
+    "consumables.lua",
+    "decks.lua",
+    "vouchers.lua",
+    -- "modifiers.lua",
+    "tags.lua"
+}
+
+SMODS.current_mod.reset_game_globals = function(run_start)
+    if run_start then
+        print(Workshop.config.run_reset)
+        if Workshop.config.run_reset == true then
+            print("reset")
+            ClearCustomJokerData()
+        end
+    end
+end
+
 ValidateCustomJokerFiles = function()
     for i=1,2 do
         if not NFS.getInfo(Workshop.path..'assets/'..i..'x/custom') then
@@ -95,24 +115,38 @@ ValidateCustomJokerFiles = function()
     end
 end
 
--- function get_unused_cj_slot()
---     for i=1,5 do
---         if Workshop and Workshop.config and Workshop.config.custom_jokers and Workshop.config.custom_jokers["joker"..i] and Workshop.config.custom_jokers["joker"..i].in_use == false then
---             return i
---         end
---     end
---     return 6
--- end
+ClearCustomJokerData = function()
+    for i=1,2 do
+        if NFS.getInfo(Workshop.path..'assets/'..i..'x/custom') then
+            for j=1,5 do
+                if NFS.getInfo(Workshop.path..'assets/'..i..'x/custom/joker'..j..'.png') then
+                    local was_removed = NFS.remove(Workshop.path..'assets/'..i..'x/custom/joker'..j..'.png')
+                    if not was_removed then
+                        do_restart = false
+                        sendErrorMessage("Failed to delete: assets/"..i.."x/custom/joker"..j..".png\nMake sure the file isn't open and try again")
+                    end
+                end
+            end
+        end
+    end
+    for i=1,5 do
+        Workshop.config.custom_jokers["joker"..i] = {
+            in_use = false,
+            condition = 0,
+            effect = 0
+        }
+    end
+    SMODS.save_mod_config(Workshop)
 
-local openFiles = {
-    "ui.lua",
-    "jokers.lua",
-    "consumables.lua",
-    "decks.lua",
-    "vouchers.lua",
-    -- "modifiers.lua",
-    "tags.lua"
-}
+    ValidateCustomJokerFiles()
+    ReloadCustomJokerAtlas()
+end
+
+ReloadCustomJokerAtlas = function()
+    for i=1,5 do 
+        G.ASSET_ATLAS["egwork_atlas_custom"..i].image = love.graphics.newImage('/mods/Workshop/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker'..i..'.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})   
+    end
+end
 
 ValidateCustomJokerFiles()
 

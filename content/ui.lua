@@ -6,6 +6,7 @@ Workshop.config_tab = function()
     return {n = G.UIT.ROOT, config = {r = 0.1, minw = 4, minh = 4, align = "cm", padding = 0.2, colour = G.C.BLACK}, nodes = {
         {n=G.UIT.C, nodes = {
             create_toggle({label = localize('conf_palette_lock'), ref_table = Workshop.config, ref_value = 'palette_lock', info = localize('conf_palette_lock_desc'), active_colour = Workshop.badge_colour, right = true}),
+            create_toggle({label = localize('conf_run_reset'), ref_table = Workshop.config, ref_value = 'run_reset', info = localize('conf_run_reset_desc'), active_colour = Workshop.badge_colour, right = true}),
         }},
         {n=G.UIT.C, config = {align = "cm"}, nodes = {
             { n = G.UIT.R, config = {align = "cm"}, nodes = {
@@ -17,47 +18,12 @@ Workshop.config_tab = function()
             { n = G.UIT.R, config = {align = "cm", padding = 0.2}, nodes = {
                 UIBox_button({ colour = G.C.RED, button = "JC_Purge_Jokers", label = { 'Purge Custom Jokers' }, minw = 5, focus_args = { snap_to = true }}),
             }},
-            { n = G.UIT.R, config = {align = "cm"}, nodes = {
-                {n=G.UIT.T, config={text = 'Game should quit after purging', scale = 0.3*1, colour = G.C.UI.TEXT_LIGHT}},
-            }},
         }}
     }}
 end
 
-
 G.FUNCS.JC_Purge_Jokers = function()
-    local do_restart = true
-    for i=1,2 do
-        if NFS.getInfo(Workshop.path..'assets/'..i..'x/custom') then
-            for j=1,5 do
-                local was_removed = NFS.remove(Workshop.path..'assets/'..i..'x/custom/joker'..j..'.png')
-                if not was_removed then
-                    do_restart = false
-                    sendErrorMessage("Failed to delete: assets/'..i..'x/custom/joker'..j..'.png\nMake sure the file isn't open and try again")
-                end
-            end
-        end
-    end
-    for i=1,5 do
-        Workshop.config.custom_jokers["joker"..i] = {
-            in_use = false,
-            condition = 0,
-            effect = 0
-        }
-    end
-    SMODS.save_mod_config(Workshop)
-    if do_restart then SMODS.restart_game() end
-    --     G.E_MANAGER:add_event(Event({
-    --     trigger = 'after',
-    --     delay = 0.1,
-    --     func = function()
-    --         if do_restart then
-    --             love.event.quit()
-    --         end
-    --        return true
-    --     end
-    --   }))
-
+    ClearCustomJokerData()
 end
 
 

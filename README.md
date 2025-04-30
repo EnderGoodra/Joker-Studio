@@ -1,7 +1,7 @@
-# Workshop Mod
+# Joker Studio Mod
  The definitive DIY Balatro mod.
 
-## What is the Workshop Mod?
+## What is the Joker Studio Mod?
 This mod adds 5 new Custom Jokers, all of which lack abilities and graphics. *Why?* Because that's where **you** come in!
 
 ## Introducing: Studio Cards

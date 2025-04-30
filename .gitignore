@@ -1,3 +1,5 @@
 assets/*.png
 assets/*.ase
 assets/*.aseprite
+
+assets/*/joker*.png

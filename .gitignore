@@ -2,4 +2,5 @@ assets/*.png
 assets/*.ase
 assets/*.aseprite
 
-assets/*x/custom/joker*.png
+/assets/1x/custom
+/assets/2x/custom

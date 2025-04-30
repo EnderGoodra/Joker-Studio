@@ -2,5 +2,5 @@ assets/*.png
 assets/*.ase
 assets/*.aseprite
 
-/assets/1x/custom
-/assets/2x/custom
+assets/1x/custom
+assets/2x/custom

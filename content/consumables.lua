@@ -11,7 +11,7 @@ SMODS.Atlas {
 }
 
 SMODS.ConsumableType {
-    key = 'egwork_designer',
+    key = 'egjs_designer',
     primary_colour = HEX('FFFFFF'),
     secondary_colour = HEX('888888'),
     loc_txt = {
@@ -28,8 +28,8 @@ SMODS.ConsumableType {
 
 --Basic
 SMODS.Consumable {
-    key = 'egwork_js_basic',
-    set = 'egwork_designer',
+    key = 'egjs_js_basic',
+    set = 'egjs_designer',
     loc_txt = {
         name = "Joker Studio: Basic",
         text = {
@@ -68,8 +68,8 @@ SMODS.Consumable {
 }
 --Gold
 SMODS.Consumable {
-    key = 'egwork_js_gold',
-    set = 'egwork_designer',
+    key = 'egjs_js_gold',
+    set = 'egjs_designer',
     loc_txt = {
         name = "Joker Studio: Gold",
         text = {
@@ -108,8 +108,8 @@ SMODS.Consumable {
 }
 --Platinum
 SMODS.Consumable {
-    key = 'egwork_js_platinum',
-    set = 'egwork_designer',
+    key = 'egjs_js_platinum',
+    set = 'egjs_designer',
     loc_txt = {
         name = "Joker Studio: Platinum",
         text = {
@@ -148,8 +148,8 @@ SMODS.Consumable {
 }
 --VIP
 SMODS.Consumable {
-    key = 'egwork_js_vip',
-    set = 'egwork_designer',
+    key = 'egjs_js_vip',
+    set = 'egjs_designer',
     loc_txt = {
         name = "Joker Studio: VIP",
         text = {
@@ -192,16 +192,16 @@ CreateJSCard = function(area, quantity, force_spawn, force_key, stickers)
     local _key = force_key or nil
     if _key == nil then
         if G.GAME.js_odds and pseudorandom('js_roll') < (G.GAME and G.GAME.probabilities.normal or 1)/G.GAME.js_odds then
-            _key = "c_egwork_js_vip"
+            _key = "c_egjs_js_vip"
         elseif G.GAME.js_base then
             _key = G.GAME.js_base
         else
-            _key = "c_egwork_js_basic"
+            _key = "c_egjs_js_basic"
         end
     end
 
     for i = 1, (force_spawn and quantity) or math.min(quantity, area.config.card_limit - #area.cards) do
-        local selected_card = SMODS.create_card({set = "egwork_designer", key = _key, no_edition = true, skip_materialize = false, stickers = stickers or nil})
+        local selected_card = SMODS.create_card({set = "egjs_designer", key = _key, no_edition = true, skip_materialize = false, stickers = stickers or nil})
         selected_card:add_to_deck()
         area:emplace(selected_card)
     end
@@ -210,8 +210,8 @@ end
 
 -- --Cracked
 -- SMODS.Consumable {
---     key = 'egwork_js_trial',
---     set = 'egwork_designer',
+--     key = 'egjs_js_trial',
+--     set = 'egjs_designer',
 --     loc_txt = {
 --         name = "Joker Studio: Trial",
 --         text = {

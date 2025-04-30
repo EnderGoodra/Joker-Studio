@@ -11,7 +11,7 @@ SMODS.Atlas {
 
 
 SMODS.Sticker {
-    key = 'egwork_trial_sticker',
+    key = 'egjs_trial_sticker',
     loc_txt = {
         name = 'Trial',
         text = {
@@ -31,7 +31,7 @@ SMODS.Sticker {
 }
 
 SMODS.Sticker {
-    key = 'egwork_pirated_sticker',
+    key = 'egjs_pirated_sticker',
     loc_txt = {
         name = 'Pirated',
         text = {
@@ -54,7 +54,7 @@ SMODS.Sticker {
 }
 
 SMODS.Sticker {
-    key = 'egwork_malware_sticker',
+    key = 'egjs_malware_sticker',
     loc_txt = {
         name = 'Malware',
         text = {
@@ -74,10 +74,10 @@ SMODS.Sticker {
     pos = { x = 2, y = 0 },
     calculate = function(self, card, context)
         if context.before and pseudorandom('malware') < (G.GAME and G.GAME.probabilities.normal or 1)/2 then
-            SMODS.debuff_card(card, true, "egwork_malware")
+            SMODS.debuff_card(card, true, "egjs_malware")
         end
         if context.after then
-            SMODS.debuff_card(card, false, "egwork_malware")
+            SMODS.debuff_card(card, false, "egjs_malware")
         end
     end,
     rate = 0

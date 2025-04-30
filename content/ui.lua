@@ -259,7 +259,7 @@ function JS_SetAtlasActive()
         local success, message NFS.write(Workshop.path..'assets/'..i..'x/custom/joker_active.png', data)
     end
 
-    G.ASSET_ATLAS["egwork_atlas_custom_active"].image = love.graphics.newImage('/mods/Workshop/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})   
+    G.ASSET_ATLAS["egjs_atlas_custom_active"].image = love.graphics.newImage('/mods/Workshop/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})   
 end
 
 function JS_GenerateImage(countX, countY)
@@ -275,8 +275,8 @@ function JS_GenerateImage(countX, countY)
         art = 'collab_FO'
     }
 
-    local collab_sprite = Sprite(0,0,3.5*G.CARD_W,3.5*G.CARD_H,G.ASSET_ATLAS['egwork_atlas_custom_active'], {x=0,y=0}) 
-    local collab_sprite_invis = Sprite(0,0,3.5*G.CARD_W,3.5*G.CARD_H,G.ASSET_ATLAS['egwork_atlas_custom_active'], {x=0,y=0}) 
+    local collab_sprite = Sprite(0,0,3.5*G.CARD_W,3.5*G.CARD_H,G.ASSET_ATLAS['egjs_atlas_custom_active'], {x=0,y=0}) 
+    local collab_sprite_invis = Sprite(0,0,3.5*G.CARD_W,3.5*G.CARD_H,G.ASSET_ATLAS['egjs_atlas_custom_active'], {x=0,y=0}) 
     
     local grid = {n = G.UIT.R, config = {padding = -3.5*G.CARD_W, align = "cm", colour = {0.3, 0.3, 0.3, 1}, minw = 3.5*G.CARD_W, minh = 3.5*G.CARD_H, emboss = 0}, nodes = {
             {n=G.UIT.O, config={colour = G.C.WHITE, object = collab_sprite, }},
@@ -303,7 +303,7 @@ G.FUNCS.JS_Save = function()
         NFS.remove(Workshop.path..'assets/'..i..'x/custom/joker_active.png')
     end
 
-    --local card = create_card("Joker", G.jokers, nil, nil, nil, nil, ("j_egwork_cj_"..G.JS_ACTIVE_JOKER))
+    --local card = create_card("Joker", G.jokers, nil, nil, nil, nil, ("j_egjs_cj_"..G.JS_ACTIVE_JOKER))
 	--card:add_to_deck()
 	--G.jokers:emplace(card)
 
@@ -408,12 +408,12 @@ end
 
 JS_ReloadAtlas = function(full)
     if not full then
-        G.ASSET_ATLAS["egwork_atlas_custom_active"].image = love.graphics.newImage('/mods/Workshop/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})      
+        G.ASSET_ATLAS["egjs_atlas_custom_active"].image = love.graphics.newImage('/mods/Workshop/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})      
     end
 
     if full then
         for i=1,5 do
-            G.ASSET_ATLAS["egwork_atlas_custom"..G.JS_ACTIVE_JOKER].image = love.graphics.newImage('/mods/Workshop/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})    
+            G.ASSET_ATLAS["egjs_atlas_custom"..G.JS_ACTIVE_JOKER].image = love.graphics.newImage('/mods/Workshop/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})    
         end
     end
 end
@@ -538,7 +538,7 @@ end
 
 function JM_GenerateCard()
     --local cardarea = CardArea( 2,2,3.5*G.CARD_W,0.75*G.CARD_H, {card_limit = 1, type = 'title', highlight_limit = 0})
-    local selected_card = SMODS.create_card({set = "Joker", key = "j_egwork_cj_"..G.JM_SELECT, no_edition = true, skip_materialize = true})
+    local selected_card = SMODS.create_card({set = "Joker", key = "j_egjs_cj_"..G.JM_SELECT, no_edition = true, skip_materialize = true})
     ease_value(selected_card.T, 'scale', 0.2 ,nil,'REAL',true,0.2)
     --cardarea:emplace(selected_card)
     local grid = {n = G.UIT.R, config = {padding = 0, align = "cm", colour = {0.3, 0.3, 0.3, 1}, minw = G.CARD_W * 1.2, minh = G.CARD_H * 1.2, emboss = 0}, nodes = {
@@ -725,7 +725,7 @@ end
 -- ==============
 
 JX_AddJoker = function ()
-    local card = SMODS.create_card({set = "Joker", key = "j_egwork_cj_"..G.JM_SELECT})
+    local card = SMODS.create_card({set = "Joker", key = "j_egjs_cj_"..G.JM_SELECT})
     if G.JM_MODIFIER then
         if G.JM_MODIFIER == "perishable" then
             card.ability.perishable = true

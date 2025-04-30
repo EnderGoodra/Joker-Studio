@@ -11,7 +11,7 @@ SMODS.Atlas {
 
 
 SMODS.Tag {
-    key = 'egwork_editor',
+    key = 'egjs_editor',
     loc_txt = {
         name = 'Editor Tag',
         text = {
@@ -27,13 +27,13 @@ SMODS.Tag {
         tag.triggered = true
     end,
     loc_vars = function(self, info_queue, tag)
-        info_queue[#info_queue+1] = G.P_CENTERS["c_egwork_js_basic"]
+        info_queue[#info_queue+1] = G.P_CENTERS["c_egjs_js_basic"]
         return { vars = {  } }
     end,
 }
 
 -- SMODS.Tag {
---     key = 'egwork_trial',
+--     key = 'egjs_trial',
 --     loc_txt = {
 --         name = 'Demo Tag',
 --         text = {
@@ -44,18 +44,18 @@ SMODS.Tag {
 --     atlas = 'atlas_tags',
 --     pos = { x = 1, y = 0 },
 --     apply = function(self, tag, context)
---         CreateJSCard(G.consumeables, 1, nil, 'c_egwork_js_gold', {"egwork_trial_sticker"})
+--         CreateJSCard(G.consumeables, 1, nil, 'c_egjs_js_gold', {"egjs_trial_sticker"})
 --         tag:yep("Gold", G.C.MONEY, function() return true end )
 --         tag.triggered = true
 --     end,
 --     loc_vars = function(self, info_queue, tag)
---         info_queue[#info_queue+1] = G.P_CENTERS["c_egwork_js_gold"]
+--         info_queue[#info_queue+1] = G.P_CENTERS["c_egjs_js_gold"]
 --         return { vars = {  } }
 --     end,
 -- }
 
 -- SMODS.Tag {
---     key = 'egwork_cracked',
+--     key = 'egjs_cracked',
 --     loc_txt = {
 --         name = 'Cracked Tag',
 --         text = {
@@ -66,12 +66,12 @@ SMODS.Tag {
 --     atlas = 'atlas_tags',
 --     pos = { x = 2, y = 0 },
 --     apply = function(self, tag, context)
---         CreateJSCard(G.consumeables, 1, nil, 'c_egwork_js_platinum', {"egwork_pirated_sticker"})
+--         CreateJSCard(G.consumeables, 1, nil, 'c_egjs_js_platinum', {"egjs_pirated_sticker"})
 --         tag:yep("Platinum", G.C.PLANET, function() return true end )
 --         tag.triggered = true
 --     end,
 --     loc_vars = function(self, info_queue, tag)
---         info_queue[#info_queue+1] = G.P_CENTERS["c_egwork_js_platinum"]
+--         info_queue[#info_queue+1] = G.P_CENTERS["c_egjs_js_platinum"]
 --         return { vars = {  } }
 --     end,
 -- }

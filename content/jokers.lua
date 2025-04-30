@@ -48,7 +48,7 @@ SMODS.Atlas {
 
 -- Custom Joker 1
 SMODS.Joker {
-    key = "egwork_cj_1",
+    key = "egjs_cj_1",
     loc_txt = {
         name = "Custom Joker 1",
         text = { }
@@ -109,7 +109,7 @@ SMODS.Joker {
 }
 -- Custom Joker 2
 SMODS.Joker {
-    key = "egwork_cj_2",
+    key = "egjs_cj_2",
     loc_txt = {
         name = "Custom Joker 2",
         text = {}
@@ -170,7 +170,7 @@ SMODS.Joker {
 }
 -- Custom Joker 3
 SMODS.Joker {
-    key = "egwork_cj_3",
+    key = "egjs_cj_3",
     loc_txt = {
         name = "Custom Joker 3",
         text = {}
@@ -231,7 +231,7 @@ SMODS.Joker {
 }
 -- Custom Joker 4
 SMODS.Joker {
-    key = "egwork_cj_4",
+    key = "egjs_cj_4",
     loc_txt = {
         name = "Custom Joker 4",
         text = {}
@@ -292,7 +292,7 @@ SMODS.Joker {
 }
 -- Custom Joker 5
 SMODS.Joker {
-    key = "egwork_cj_5",
+    key = "egjs_cj_5",
     loc_txt = {
         name = "Custom Joker 5",
         text = {}

@@ -6,25 +6,25 @@ SMODS.Atlas {
 }
 
 SMODS.Back {
-    key = 'egwork_jimbos_deck',
+    key = 'egjs_jimbos_deck',
     loc_txt = {
         name = 'JimbOS Deck',
         text = {
-            'Gain a {C:attention,T:c_egwork_js_basic}Joker Studio: Basic{}',
+            'Gain a {C:attention,T:c_egjs_js_basic}Joker Studio: Basic{}',
             'after each {C:attention}Boss Blind{}',
-            'Start with {C:attention,T:v_egwork_license}Licence{} voucher',
+            'Start with {C:attention,T:v_egjs_license}Licence{} voucher',
         }
     },
-    config = { voucher = 'v_egwork_license' },
+    config = { voucher = 'v_egjs_license' },
     -- loc_vars = function(self, info_queue, back)
-    --     info_queue[#info_queue+1] = { set = "egwork_designer", key = "c_egwork_js_basic" }
+    --     info_queue[#info_queue+1] = { set = "egjs_designer", key = "c_egjs_js_basic" }
     --     return { vars = { } }
     -- end,
     atlas = 'atlas_back',
     -- apply = function(self, back)
     --     G.GAME.used_vouchers[] = true
     --     G.GAME.starting_voucher_count = (G.GAME.starting_voucher_count or 0) + 1
-    --     Card.apply_to_run(nil, G.P_CENTERS['v_egwork_license'])
+    --     Card.apply_to_run(nil, G.P_CENTERS['v_egjs_license'])
     -- end,
     calculate = function (self, back, context)
         if context.context == 'eval' and G.GAME.last_blind and G.GAME.last_blind.boss then

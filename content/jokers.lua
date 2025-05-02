@@ -57,7 +57,7 @@ SMODS.Joker {
     custom_name = "joker1",
     atlas = 'atlas_custom1',
     in_pool = function(self, args)
-        return false
+        return Workshop.config.custom_jokers["joker1"].in_use
     end,
     calculate = function(self, card, context)
         return CustomJokerCalculate("joker1", self, context, card)
@@ -118,7 +118,7 @@ SMODS.Joker {
     custom_name = "joker2",
     atlas = 'atlas_custom2',
     in_pool = function(self, args)
-        return false
+        return Workshop.config.custom_jokers["joker2"].in_use
     end,
     calculate = function(self, card, context)
         return CustomJokerCalculate("joker2", self, context, card)
@@ -179,7 +179,7 @@ SMODS.Joker {
     custom_name = "joker3",
     atlas = 'atlas_custom3',
     in_pool = function(self, args)
-        return false
+        return Workshop.config.custom_jokers["joker3"].in_use
     end,
     calculate = function(self, card, context)
         return CustomJokerCalculate("joker3", self, context, card)
@@ -240,7 +240,7 @@ SMODS.Joker {
     custom_name = "joker4",
     atlas = 'atlas_custom4',
     in_pool = function(self, args)
-        return false
+        return Workshop.config.custom_jokers["joker4"].in_use
     end,
     calculate = function(self, card, context)
         return CustomJokerCalculate("joker4", self, context, card)
@@ -301,7 +301,7 @@ SMODS.Joker {
     custom_name = "joker5",
     atlas = 'atlas_custom5',
     in_pool = function(self, args)
-        return false
+        return Workshop.config.custom_jokers["joker5"].in_use
     end,
     calculate = function(self, card, context)
         return CustomJokerCalculate("joker5", self, context, card)

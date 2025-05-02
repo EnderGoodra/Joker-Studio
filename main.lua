@@ -6,6 +6,10 @@
 --- ==============
 local NFS = require("nativefs")
 Workshop = SMODS.current_mod
+local _p = ""
+for i in string.gmatch(Workshop.path, '([^/]+)') do
+    FolderName = i
+end
 
 CustomJokerConditions = {
     [0] = nil,
@@ -90,9 +94,7 @@ local openFiles = {
 
 SMODS.current_mod.reset_game_globals = function(run_start)
     if run_start then
-        print(Workshop.config.run_reset)
         if Workshop.config.run_reset == true then
-            print("reset")
             ClearCustomJokerData()
         end
     end
@@ -101,7 +103,7 @@ end
 ValidateCustomJokerFiles = function()
     for i=1,2 do
         if not NFS.getInfo(Workshop.path..'assets/'..i..'x/custom') then
-            print(i..'x/custom directory built'..(NFS.createDirectory(Workshop.path..'assets/'..i..'x/custom') and 'success' or 'false'))
+            NFS.createDirectory(Workshop.path..'assets/'..i..'x/custom')
         end
 
         for j=1,5 do
@@ -109,7 +111,7 @@ ValidateCustomJokerFiles = function()
             if not info or info.size == 0 or info.size == nil then
                 local data, size = NFS.read(Workshop.path..'assets/'..i..'x/custom_joker_base.png')
                 local success, message NFS.write(Workshop.path..'assets/'..i..'x/custom/joker'..j..'.png', data)
-                print(i..'x/custom/joker'..j..'.png'..(success and ' success' or ' false'))
+                --print(i..'x/custom/joker'..j..'.png'..(success and ' success' or ' false'))
             end
         end
     end
@@ -144,7 +146,7 @@ end
 
 ReloadCustomJokerAtlas = function()
     for i=1,5 do 
-        G.ASSET_ATLAS["egjs_atlas_custom"..i].image = love.graphics.newImage('/mods/Workshop/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker'..i..'.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})   
+        G.ASSET_ATLAS["egjs_atlas_custom"..i].image = love.graphics.newImage('/mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker'..i..'.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})   
     end
 end
 

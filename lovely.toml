@@ -15,7 +15,18 @@ shake_amt = (G.JS_MENU and 0 or 1)*(G.SETTINGS.reduced_motion and 0 or 1)*G.SETT
 '''
 match_indent = true
 
-
-
-
-
+[[patches]]
+[patches.pattern]
+target = "engine/ui.lua"
+pattern = 'Node.update(self, dt)'
+position = "before"
+payload = '''
+if self.config.JS_drag then
+        local cont = G.CONTROLLER
+        if cont.is_cursor_down and cont.cursor_down.target == self then
+                self:click()
+                self.last_clicked = 0
+        end
+end
+'''
+match_indent = true

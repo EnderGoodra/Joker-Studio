@@ -280,7 +280,7 @@ function JS_GenerateImage(countX, countY)
     
     local grid = {n = G.UIT.R, config = {padding = -3.5*G.CARD_W, align = "cm", colour = {0.3, 0.3, 0.3, 1}, minw = 3.5*G.CARD_W, minh = 3.5*G.CARD_H, emboss = 0}, nodes = {
             {n=G.UIT.O, config={colour = G.C.WHITE, object = collab_sprite, }},
-            {n=G.UIT.C, config={colour = {0,0,0,0}, minw = 3.5*G.CARD_W, minh = 3.5*G.CARD_H, button = 'JS_Draw'}},
+            {n=G.UIT.C, config={colour = {0,0,0,0}, minw = 3.5*G.CARD_W, minh = 3.5*G.CARD_H, button = 'JS_Draw', JS_drag = true}},
         }}
     return grid
 end

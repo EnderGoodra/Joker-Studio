@@ -40,32 +40,34 @@ SMODS.Back {
     end
 }
 
-CardSleeves.Sleeve {
-    key = "jimbos_sleeve",
-    loc_txt = {
-        name = "JimbOS Sleeve",
-        text = { "{C:blue}+#1#{} hand", "every round" }
-    },
-    loc_vars = function(self)
-        local key, vars
-        if self.get_current_deck_key() == "b_egjs_jimbos_deck" then
-            key = self.key .. "_alt"
-            self.config = { voucher = 'v_egjs_upgrade', give_card = false }
-            vars = { }
-        else
-            key = self.key
-            self.config = { voucher = 'v_egjs_license', give_card = true }
-            vars = { }
+if CardSleeves then
+    CardSleeves.Sleeve {
+        key = "jimbos_sleeve",
+        loc_txt = {
+            name = "JimbOS Sleeve",
+            text = { "{C:blue}+#1#{} hand", "every round" }
+        },
+        loc_vars = function(self)
+            local key, vars
+            if self.get_current_deck_key() == "b_egjs_jimbos_deck" then
+                key = self.key .. "_alt"
+                self.config = { voucher = 'v_egjs_upgrade', give_card = false }
+                vars = { }
+            else
+                key = self.key
+                self.config = { voucher = 'v_egjs_license', give_card = true }
+                vars = { }
+            end
+            return { key = key, vars = vars }
+        end,
+        atlas = "atlas_sleeve",
+        pos = {x = 0, y = 0},
+        unlocked = false,
+        unlock_condition = {deck = "b_egjs_jimbos_deck", stake = "stake_black"},
+        calculate = function (self, sleeve, context)
+            if sleeve.config.give_card and context.context == 'eval' and G.GAME.last_blind and G.GAME.last_blind.boss then
+                CreateJSCard(G.consumeables, 1, nil, nil)
+            end
         end
-        return { key = key, vars = vars }
-    end,
-	atlas = "atlas_sleeve",
-	pos = {x = 0, y = 0},
-    unlocked = false,
-    unlock_condition = {deck = "b_egjs_jimbos_deck", stake = "stake_black"},
-    calculate = function (self, sleeve, context)
-        if sleeve.config.give_card and context.context == 'eval' and G.GAME.last_blind and G.GAME.last_blind.boss then
-            CreateJSCard(G.consumeables, 1, nil, nil)
-        end
-    end
-}
+    }
+end

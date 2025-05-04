@@ -263,20 +263,7 @@ function JS_SetAtlasActive()
 end
 
 function JS_GenerateImage(countX, countY)
-    G.viewed_collab = G.viewed_collab or 'The Binding of Isaac'
-
-    local curr_collab = {
-        artist = 'Franek',
-        ml_text = {
-          '© 2025 ZeniMax.  ZeniMax and Bethesda Game Studios',
-          'are trademarks of the ZeniMax group of companies. ',
-          'All rights reserved.',
-        },
-        art = 'collab_FO'
-    }
-
     local collab_sprite = Sprite(0,0,3.5*G.CARD_W,3.5*G.CARD_H,G.ASSET_ATLAS['egjs_atlas_custom_active'], {x=0,y=0}) 
-    local collab_sprite_invis = Sprite(0,0,3.5*G.CARD_W,3.5*G.CARD_H,G.ASSET_ATLAS['egjs_atlas_custom_active'], {x=0,y=0}) 
     
     local grid = {n = G.UIT.R, config = {padding = -3.5*G.CARD_W, align = "cm", colour = {0.3, 0.3, 0.3, 1}, minw = 3.5*G.CARD_W, minh = 3.5*G.CARD_H, emboss = 0}, nodes = {
             {n=G.UIT.O, config={colour = G.C.WHITE, object = collab_sprite, }},

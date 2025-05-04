@@ -24,9 +24,29 @@ payload = '''
 if self.config.JS_drag then
         local cont = G.CONTROLLER
         if cont.is_cursor_down and cont.cursor_down.target == self then
-                self:click()
+                self:click(true)
                 self.last_clicked = 0
         end
 end
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "engine/ui.lua"
+pattern = 'function UIElement:click()'
+position = "at"
+payload = '''
+function UIElement:click(no_audio)
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "engine/ui.lua"
+pattern = '''play_sound('button', 1, 0.3)'''
+position = "at"
+payload = '''
+if not no_audio then play_sound('button', 1, 0.3) end
 '''
 match_indent = true

@@ -53,6 +53,7 @@ SMODS.Joker {
         name = "Custom Joker 1",
         text = { }
     },
+    blueprint_compat = true,
     rarity = 1,
     custom_name = "joker1",
     atlas = 'atlas_custom1',
@@ -94,12 +95,10 @@ SMODS.Joker {
 
         local cardData = Workshop.config.custom_jokers[self.custom_name]
         if cardData.in_use == true then
-            local _conKey = CustomJokerConditions[cardData.condition].loc_key or 'cj_condition_nil'
-            local _effectKey = CustomJokerConditions[cardData.condition].effects[cardData.effect].loc_key or 'cj_effect_nil'
-            local _amountVar = CustomJokerConditions[cardData.condition].effects[cardData.effect].amount[cardData.tier] or 0
+            local _conKey, _effectKey, _amountVar, _colVar = GetUIDescriptions(cardData)
     
             localize{type = 'other', key = _conKey, nodes = desc_nodes, vars = {}}
-            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1)}}
+            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1), colours = {_colVar or nil}}}
             localize{type = 'other', key = "js_tier"..cardData.tier, nodes = desc_nodes, vars = {}}
             
         else
@@ -114,6 +113,7 @@ SMODS.Joker {
         name = "Custom Joker 2",
         text = {}
     },
+    blueprint_compat = true,
     rarity = 1,
     custom_name = "joker2",
     atlas = 'atlas_custom2',
@@ -155,12 +155,10 @@ SMODS.Joker {
 
         local cardData = Workshop.config.custom_jokers[self.custom_name]
         if cardData.in_use == true then
-            local _conKey = CustomJokerConditions[cardData.condition].loc_key or 'cj_condition_nil'
-            local _effectKey = CustomJokerConditions[cardData.condition].effects[cardData.effect].loc_key or 'cj_effect_nil'
-            local _amountVar = CustomJokerConditions[cardData.condition].effects[cardData.effect].amount[cardData.tier] or 0
+            local _conKey, _effectKey, _amountVar, _colVar = GetUIDescriptions(cardData)
     
             localize{type = 'other', key = _conKey, nodes = desc_nodes, vars = {}}
-            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1)}}
+            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1), colours = {_colVar or nil}}}
             localize{type = 'other', key = "js_tier"..cardData.tier, nodes = desc_nodes, vars = {}}
             
         else
@@ -175,6 +173,7 @@ SMODS.Joker {
         name = "Custom Joker 3",
         text = {}
     },
+    blueprint_compat = true,
     rarity = 1,
     custom_name = "joker3",
     atlas = 'atlas_custom3',
@@ -216,12 +215,10 @@ SMODS.Joker {
 
         local cardData = Workshop.config.custom_jokers[self.custom_name]
         if cardData.in_use == true then
-            local _conKey = CustomJokerConditions[cardData.condition].loc_key or 'cj_condition_nil'
-            local _effectKey = CustomJokerConditions[cardData.condition].effects[cardData.effect].loc_key or 'cj_effect_nil'
-            local _amountVar = CustomJokerConditions[cardData.condition].effects[cardData.effect].amount[cardData.tier] or 0
+            local _conKey, _effectKey, _amountVar, _colVar = GetUIDescriptions(cardData)
     
             localize{type = 'other', key = _conKey, nodes = desc_nodes, vars = {}}
-            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1)}}
+            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1), colours = {_colVar or nil}}}
             localize{type = 'other', key = "js_tier"..cardData.tier, nodes = desc_nodes, vars = {}}
             
         else
@@ -236,6 +233,7 @@ SMODS.Joker {
         name = "Custom Joker 4",
         text = {}
     },
+    blueprint_compat = true,
     rarity = 1,
     custom_name = "joker4",
     atlas = 'atlas_custom4',
@@ -277,12 +275,10 @@ SMODS.Joker {
 
         local cardData = Workshop.config.custom_jokers[self.custom_name]
         if cardData.in_use == true then
-            local _conKey = CustomJokerConditions[cardData.condition].loc_key or 'cj_condition_nil'
-            local _effectKey = CustomJokerConditions[cardData.condition].effects[cardData.effect].loc_key or 'cj_effect_nil'
-            local _amountVar = CustomJokerConditions[cardData.condition].effects[cardData.effect].amount[cardData.tier] or 0
+            local _conKey, _effectKey, _amountVar, _colVar = GetUIDescriptions(cardData)
     
             localize{type = 'other', key = _conKey, nodes = desc_nodes, vars = {}}
-            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1)}}
+            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1), colours = {_colVar or nil}}}
             localize{type = 'other', key = "js_tier"..cardData.tier, nodes = desc_nodes, vars = {}}
             
         else
@@ -297,6 +293,7 @@ SMODS.Joker {
         name = "Custom Joker 5",
         text = {}
     },
+    blueprint_compat = true,
     rarity = 1,
     custom_name = "joker5",
     atlas = 'atlas_custom5',
@@ -338,12 +335,10 @@ SMODS.Joker {
 
         local cardData = Workshop.config.custom_jokers[self.custom_name]
         if cardData.in_use == true then
-            local _conKey = CustomJokerConditions[cardData.condition].loc_key or 'cj_condition_nil'
-            local _effectKey = CustomJokerConditions[cardData.condition].effects[cardData.effect].loc_key or 'cj_effect_nil'
-            local _amountVar = CustomJokerConditions[cardData.condition].effects[cardData.effect].amount[cardData.tier] or 0
+            local _conKey, _effectKey, _amountVar, _colVar = GetUIDescriptions(cardData)
     
             localize{type = 'other', key = _conKey, nodes = desc_nodes, vars = {}}
-            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1)}}
+            localize{type = 'other', key = _effectKey, nodes = desc_nodes, vars = {_amountVar or 1, (G.GAME and G.GAME.probabilities.normal or 1), colours = {_colVar or nil}}}
             localize{type = 'other', key = "js_tier"..cardData.tier, nodes = desc_nodes, vars = {}}
             
         else
@@ -352,93 +347,120 @@ SMODS.Joker {
     end
 }
 
+GetUIDescriptions = function(card_data)
+    local _condition = CustomJokerConditions[card_data.condition] or nil
+    local _effect = _condition and _condition.effects[card_data.effect] or nil
+    local _conKey = (_condition and _condition.loc_key) or 'cj_condition_nil'
+    local _effectKey = _effect and ((_effect.dependency and (next(SMODS.find_mod(_effect.dependency)) and (_effect.loc_key or 'cj_effect_nil') or _effect.missing_loc_key)) or _effect.loc_key or 'cj_effect_nil')
+    local _amountVar = _effect and _effect.amount[card_data.tier] or 0
+    local _colVar = _effect and _effect.loc_col and _effect.loc_col[card_data.tier] or nil
+    return _conKey, _effectKey, _amountVar, _colVar
+end
+
 
 CustomJokerCalculate = function(id, slf, context, card)
     local card_data = Workshop.config.custom_jokers[id]
     if card_data.in_use == true and card_data.condition ~= 0 and card_data.effect ~= 0 then
         local _con = CustomJokerConditions[card_data.condition]
-        if card_data.condition == 1 and context.joker_main then return CustomJokerEffect(_con.effects, card_data, context, card) end
-        if card_data.condition == 2 and context.pre_discard then return CustomJokerEffect(_con.effects, card_data, context, card) end
+        local effect = _con.effects[card_data.effect] or nil
+        local amount = (effect and effect.amount[card_data.tier]) or nil
+        if effect ~= nil and amount ~= nil then
+            if context.repetition then
+                if _con.type == "scoring_cards" and effect.type == "retrigger"  then
+                return {
+                    message = localize('k_again_ex'),
+                    repetitions = amount,
+                    card = card
+                }
+                end
+            else
+                if (_con.type == "scoring_cards" and context.individual and context.cardarea == G.play)
+            or (_con.type == "joker_main" and context.joker_main)
+            or (_con.type == "first_hand" and context.joker_main and G.GAME.current_round.hands_played == 0)
+            or (_con.type == "last_hand" and context.joker_main and G.GAME.current_round.hands_left == 0) then
+                if effect.type == "chips"  then
+                    return {
+                        message = localize{type='variable',key='a_chips',vars={amount}},
+                        chip_mod = amount
+                    }
+                elseif effect.type == "mult" then
+                    return {
+                        message = localize{type='variable',key='a_mult',vars={amount}},
+                        mult_mod = amount
+                    }
+                elseif effect.type == "xmult" then
+                    return {
+                        message = localize{type='variable',key='a_xmult',vars={amount}},
+                        Xmult_mod = amount
+                    }
+                elseif effect.type == "dollar" then
+                    ease_dollars(amount)
+                    return {
+                        message = localize('$')..amount,
+                        colour = G.C.MONEY,
+                        card = card
+                    }
+                end
+                end
+                if (_con.type == "round_end" and context.end_of_round and context.cardarea == G.jokers) then
+                    if effect.type == "dollar" then
+                        ease_dollars(amount)
+                        return {
+                            message = localize('$')..amount,
+                            colour = G.C.MONEY,
+                            card = card
+                        }
+                    elseif effect.type == "card_create" then
+                        local area = (effect.set == "Joker" and G.jokers) or G.consumeables
+                        if area == G.consumables and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit
+                        or area == G.jokers and #G.jokers.cards + G.GAME.joker_buffer < G.jokers.config.card_limit then
+                            if area == G.consumables then G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+                            elseif area == G.jokers then G.GAME.joker_buffer = G.GAME.joker_buffer + 1 end
+                            G.E_MANAGER:add_event(Event({
+                                trigger = 'before',
+                                delay = 0.0,
+                                func = (function()
+                                        local card = SMODS.create_card({set = effect.set, rarity = (amount == "uncommon" and 0.8) or (amount == "rare" and 1) or 0.5})
+                                        --local card = create_card(effect.set,area, nil, nil, nil, nil, nil, 'cj_create')
+                                        card:add_to_deck()
+                                        area:emplace(card)
+                                        if area == G.consumables then G.GAME.consumeable_buffer = 0
+                                        elseif area == G.jokers then G.GAME.joker_buffer = 0 end
+                                    return true
+                                end)}))
+                            card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize(effect.eval_text and effect.eval_text.loc_message or 'k_plus_tarot'), colour = effect.eval_text and effect.eval_text.colour or G.C.PURPLE})  
+                        end
+                    end
+                end
+                if (_con.type == "hand_discard" and context.pre_discard) then
+                    if effect.type == "dollar" then
+                        ease_dollars(amount)
+                        return {
+                            message = localize('$')..amount,
+                            colour = G.C.MONEY,
+                            card = card
+                        }
+                    elseif effect.type == "card_chance" then
+                        if pseudorandom('cj_chance'..G.GAME.round_resets.ante) < G.GAME.probabilities.normal/amount and #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
+                            G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
+                            G.E_MANAGER:add_event(Event({
+                                trigger = 'before',
+                                delay = 0.0,
+                                func = (function()
+                                        local card = SMODS.create_card({set = effect.set, no_edition = true, area = G.consumeables, key_append = 'cj_chance'})
+                                        card:add_to_deck()
+                                        G.consumeables:emplace(card)
+                                        G.GAME.consumeable_buffer = 0
+                                    return true
+                                end)}))
+                            card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize(effect.eval_text.loc_message or 'k_plus_tarot'), colour = effect.eval_text.colour or G.C.PURPLE})  
+                        end
+                    end
+                end
+            end
+        end
+    return nil
     else
         return nil
     end
-end
-
-CustomJokerEffect = function(effects, cardData, context, card)
-    local effect = effects[cardData.effect] or nil
-    local amount = (effect and effect.amount[cardData.tier]) or nil
-    if effect ~= nil and amount ~= nil then
-        print(amount)
-        if effect.type == "chips" then
-            return {
-                message = localize{type='variable',key='a_chips',vars={amount}},
-                chip_mod = amount
-            }
-        elseif effect.type == "mult" then
-            return {
-                message = localize{type='variable',key='a_mult',vars={amount}},
-                mult_mod = amount
-            }
-        elseif effect.type == "xmult" then
-            return {
-                message = localize{type='variable',key='a_xmult',vars={amount}},
-                Xmult_mod = amount
-            }
-        elseif effect.type == "dollar" then
-            if context.joker_main or context.pre_discard then
-                ease_dollars(amount)
-                return {
-                    message = localize('$')..amount,
-                    colour = G.C.MONEY,
-                    card = card
-                }
-            end
-        elseif effect.type == "card_tarot" then
-            if pseudorandom('cj_tarot'..G.GAME.round_resets.ante) < G.GAME.probabilities.normal/amount then
-                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'before',
-                    delay = 0.0,
-                    func = (function()
-                            local card = create_card('Tarot',G.consumeables, nil, nil, nil, nil, nil, 'cj_tarot')
-                            card:add_to_deck()
-                            G.consumeables:emplace(card)
-                            G.GAME.consumeable_buffer = 0
-                        return true
-                    end)}))
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_plus_tarot'), colour = G.C.PURPLE})  
-            end
-        elseif effect.type == "card_planet" then
-            if pseudorandom('cj_planet'..G.GAME.round_resets.ante) < G.GAME.probabilities.normal/amount then
-                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'before',
-                    delay = 0.0,
-                    func = (function()
-                            local card = create_card('Planet',G.consumeables, nil, nil, nil, nil, nil, 'cj_planet')
-                            card:add_to_deck()
-                            G.consumeables:emplace(card)
-                            G.GAME.consumeable_buffer = 0
-                        return true
-                    end)}))
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_plus_planet'), colour = G.C.SECONDARY_SET.Planet})
-            end
-        elseif effect.type == "card_spectral" then
-            if pseudorandom('cj_spectral'..G.GAME.round_resets.ante) < G.GAME.probabilities.normal/amount then
-                G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'before',
-                    delay = 0.0,
-                    func = (function()
-                            local card = create_card('Spectral',G.consumeables, nil, nil, nil, nil, nil, 'cj_spectral')
-                            card:add_to_deck()
-                            G.consumeables:emplace(card)
-                            G.GAME.consumeable_buffer = 0
-                        return true
-                    end)}))
-                card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_plus_spectral'), colour = G.C.SECONDARY_SET.Spectral})
-            end
-        end
-    end
-    return nil
 end

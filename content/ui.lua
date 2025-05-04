@@ -303,11 +303,8 @@ G.FUNCS.JS_Save = function()
         NFS.remove(Workshop.path..'assets/'..i..'x/custom/joker_active.png')
     end
 
-    --local card = create_card("Joker", G.jokers, nil, nil, nil, nil, ("j_egjs_cj_"..G.JS_ACTIVE_JOKER))
-	--card:add_to_deck()
-	--G.jokers:emplace(card)
-
     G.JS_MENU:remove()
+    G.JS_MENU = nil
     G.JA_SELECT = {
         CONDITION = 1,
         EFFECT = 1
@@ -397,9 +394,10 @@ JS_DrawCanvas = function(type)
         JS_ReloadAtlas(false)
     else
         if err1x then
-            print(err1x)
-        elseif err2x then
-            print(err2x)
+            print("Could not get file data: "..err1x)
+        end
+        if err2x then
+            print("Could not get file data: "..err2x)
         end
         
     end
@@ -580,7 +578,7 @@ function create_UIBox_JA_menu(card)
                                 colour = G.C.RED,
                                 no_pips = false,
                                 mid = {n=G.UIT.R, config={align = "br"}, nodes={
-                                    G.UIDEF.JA_text(CustomJokerConditions[G.JA_SELECT.CONDITION].loc_key, nil)
+                                    G.UIDEF.JA_text(CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].loc_key, nil)
                                     -- { n = G.UIT.C, config = { align = "cm"}, nodes = {
                                     --     G.UIDEF.JA_text(CustomJokerConditions[G.JA_SELECT.CONDITION].loc_key, nil)
                                     --     --{ n = G.UIT.O, config = {object = DynaText({string = localize{type ='name_text', key = blind_choice.config.key, set = 'Blind'}, colours = {G.C.WHITE},shadow = true, float = true,maxw = 2.2, scale = 0.45})}}
@@ -598,7 +596,12 @@ function create_UIBox_JA_menu(card)
                                 colour = G.C.RED,
                                 no_pips = false,
                                 mid = {n=G.UIT.R, config={align = "br"}, nodes={
-                                    G.UIDEF.JA_text(CustomJokerConditions[G.JA_SELECT.CONDITION].effects[G.JA_SELECT.EFFECT].loc_key, {CustomJokerConditions[G.JA_SELECT.CONDITION].effects[G.JA_SELECT.EFFECT].amount[G.JM_TIER] or nil, ''..(G.GAME and G.GAME.probabilities.normal or 1)})
+                                    G.UIDEF.JA_text(CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].loc_key, {
+                                        CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].amount[G.JM_TIER] or nil,
+                                        ''..(G.GAME and G.GAME.probabilities.normal or 1),
+                                        colours = {CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].loc_col
+                                            and CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].loc_col[G.JM_TIER]
+                                            or {G.C.RED}}})
                                 }}
                             })
                         }},
@@ -632,8 +635,8 @@ G.FUNCS.JA_Save = function()
     JX_AddJoker()
 
     Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].in_use = true
-    Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].condition = G.JA_SELECT.CONDITION
-    Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].effect = G.JA_SELECT.EFFECT
+    Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].condition = GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]
+    Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].effect = GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]
     Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].tier = G.JS_TIER
     G.JS_ACTIVE_JOKER = nil
     G.JA_MENU:remove()
@@ -657,40 +660,26 @@ function G.UIDEF.JA_text(text_key, loc_vars)
     return t
 end
 
-function G.UIDEF.JA_text_mod(text_key, loc_vars) 
-    local text = {}
-    localize{type = 'other', key = text_key, vars = loc_vars or {}, nodes = text}
-
-    local row = {}
-    for k, v in ipairs(text) do
-      row[#row+1] =  {n=G.UIT.R, config={align = "br"}, nodes=v}
-    end
-    return row
-    -- local t = {n=G.UIT.ROOT, config = {align = "cm", minh = 1,r = 0.3, padding = 0.07, minw = 1, colour = G.C.JOKER_GREY, shadow = true}, nodes={
-    --               {n=G.UIT.C, config={align = "cm", minh = 1,r = 0.2, padding = 0.1, minw = 1, colour = G.C.WHITE}, nodes={
-    --               {n=G.UIT.C, config={align = "cm", minh = 1,r = 0.2, padding = 0.03, minw = 1, colour = G.C.WHITE}, nodes=row}}
-    --               }
-    --             }}
-    -- return t
-end
-
 GetTierCompatibleConditions = function()
+    local counter = 1
     local validPool = {}
-    for k,v in ipairs(CustomJokerConditions) do
-        if v ~= nil and (not v.min_tier or v.min_tier <= G.JM_TIER) then
-            validPool[k] = v
+    for k,v in pairs(CustomJokerConditions) do
+        if v ~= nil and (not v.min_tier or v.min_tier <= G.JM_TIER) and ((not v.dependency) or (v.dependency and next(SMODS.find_mod(v.dependency)))) then
+            validPool[counter] = k
+            counter = counter + 1
         end
     end
     return validPool
 end
 
 GetTierCompatibleEffects = function()
-    print(G.JM_TIER)
+    local counter = 1
     local validPool = {}
-        for k,v in ipairs(CustomJokerConditions[G.JA_SELECT.CONDITION].effects) do
-        if v ~= nil and (not v.min_tier or v.min_tier <= G.JM_TIER) then
-            validPool[k] = v
-            print("added "..k)
+    table.sort(CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects, function(a, b) return (a.order or 1) < (b.order or 1) end)
+    for k,v in pairs(CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects) do
+        if v ~= nil and (not v.min_tier or v.min_tier <= G.JM_TIER) and ((not v.dependency) or (v.dependency and next(SMODS.find_mod(v.dependency)))) then
+            validPool[counter] = k
+            counter = counter + 1
         end
     end
     return validPool

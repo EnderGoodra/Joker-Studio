@@ -5,11 +5,15 @@ priority = -9
 
 [[patches]]
 [patches.pattern]
-target = "non-existant-target-file"
-pattern = '''target'''
+target = "functions/common_events.lua"
+pattern = '''
+        shake_amt = (G.SETTINGS.reduced_motion and 0 or 1)*G.SETTINGS.screenshake/100*3
+'''
 position = "at"
-payload = '''replace'''
-match_indent = false
+payload = '''
+shake_amt = (G.JS_MENU and 0 or 1)*(G.SETTINGS.reduced_motion and 0 or 1)*G.SETTINGS.screenshake/100*3
+'''
+match_indent = true
 
 
 

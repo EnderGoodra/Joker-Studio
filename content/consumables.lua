@@ -11,7 +11,7 @@ SMODS.Atlas {
 }
 
 SMODS.ConsumableType {
-    key = 'egjs_designer',
+    key = 'studio',
     primary_colour = HEX('FFFFFF'),
     secondary_colour = HEX('888888'),
     loc_txt = {
@@ -29,7 +29,7 @@ SMODS.ConsumableType {
 --Basic
 SMODS.Consumable {
     key = 'egjs_js_basic',
-    set = 'egjs_designer',
+    set = 'studio',
     loc_txt = {
         name = "Joker Studio: Basic",
         text = {
@@ -69,7 +69,7 @@ SMODS.Consumable {
 --Gold
 SMODS.Consumable {
     key = 'egjs_js_gold',
-    set = 'egjs_designer',
+    set = 'studio',
     loc_txt = {
         name = "Joker Studio: Gold",
         text = {
@@ -109,7 +109,7 @@ SMODS.Consumable {
 --Platinum
 SMODS.Consumable {
     key = 'egjs_js_platinum',
-    set = 'egjs_designer',
+    set = 'studio',
     loc_txt = {
         name = "Joker Studio: Platinum",
         text = {
@@ -149,7 +149,7 @@ SMODS.Consumable {
 --VIP
 SMODS.Consumable {
     key = 'egjs_js_vip',
-    set = 'egjs_designer',
+    set = 'studio',
     loc_txt = {
         name = "Joker Studio: VIP",
         text = {
@@ -201,7 +201,7 @@ CreateJSCard = function(area, quantity, force_spawn, force_key, stickers)
     end
 
     for i = 1, (force_spawn and quantity) or math.min(quantity, area.config.card_limit - #area.cards) do
-        local selected_card = SMODS.create_card({set = "egjs_designer", key = _key, no_edition = true, skip_materialize = false, stickers = stickers or nil})
+        local selected_card = SMODS.create_card({set = "studio", key = _key, no_edition = true, skip_materialize = false, stickers = stickers or nil})
         selected_card:add_to_deck()
         area:emplace(selected_card)
     end
@@ -211,7 +211,7 @@ end
 -- --Cracked
 -- SMODS.Consumable {
 --     key = 'egjs_js_trial',
---     set = 'egjs_designer',
+--     set = 'studio',
 --     loc_txt = {
 --         name = "Joker Studio: Trial",
 --         text = {

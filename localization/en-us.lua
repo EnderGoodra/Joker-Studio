@@ -8,71 +8,126 @@ return {
                     "{C:inactive,E:1}What will it do???"
                 }
             },
+
             cj_condition_nil = {
                 name = "Condition",
                 text = {
-                    "When {E:1}???{},",  
+                    "When {E:1}???{},",
                 }
             },
+
             cj_condition_joker_main = {
                 name = "Condition",
                 text = {
-                    "When this {C:attention}Joker{} scores,",  
+                    "When this {C:attention}Joker{} scores,",
                 }
             },
             cj_condition_hand_discard = {
                 name = "Condition",
                 text = {
-                    "When hand is discarded,",  
+                    "When hand is discarded,",
+                }
+            },
+            cj_condition_round_end = {
+                name = "Condition",
+                text = {
+                    "At end of round,",
+                }
+            },
+            cj_condition_first_hand = {
+                name = "Condition",
+                text = {
+                    "If first hand of round,",
+                }
+            },
+            cj_condition_last_hand = {
+                name = "Condition",
+                text = {
+                    "If last hand of round,",
+                }
+            },
+            cj_condition_scoring_cards = {
+                name = "Condition",
+                text = {
+                    "Each scored card",
                 }
             },
 
             cj_effect_nil = {
                 name = "Effect",
                 text = {
-                    "gives {E:1}???{}",  
+                    "gives {E:1}???{}",
                 }
             },
+
             cj_effect_chips = {
                 name = "Effect",
                 text = {
-                    "gives {C:chips}+#1#{} Chips",  
+                    "gives {C:chips}+#1#{} Chips",
                 }
             },
             cj_effect_mult = {
                 name = "Effect",
                 text = {
-                    "gives {C:mult}+#1#{} Mult",  
+                    "gives {C:mult}+#1#{} Mult",
                 }
             },
             cj_effect_xmult = {
                 name = "Effect",
                 text = {
-                    "gives {X:mult,C:white}X#1#{} Mult",  
+                    "gives {X:mult,C:white}X#1#{} Mult",
                 }
             },
             cj_effect_dollars = {
                 name = "Effect",
                 text = {
-                    "gives {C:money}$#1#{}",  
+                    "gives {C:money}$#1#{}",
                 }
             },
-            cj_effect_tarot = {
+            cj_effect_retrigger = {
                 name = "Effect",
                 text = {
-                    "{C:green}#2# in #1#{} chance to give a {C:tarot}Tarot{} card",  
+                    "retriggers {C:attention}#1#{} time(s)",
                 }
             },
-            cj_effect_planet = {
+
+            cj_effect_tarot_chance = {
                 name = "Effect",
                 text = {
-                    "{C:green}#2# in #1#{} chance to give a {C:planet}Planet{} card",  
+                    "{C:green}#2# in #1#{} chance to give a {C:tarot}Tarot{} card",
                 }
             },
-            cj_effect_spectral = {
+            cj_effect_planet_chance = {
                 name = "Effect",
                 text = {
-                    "{C:green}#2# in #1#{} chance to give a {C:spectral}Spectral{} card",  
+                    "{C:green}#2# in #1#{} chance to give a {C:planet}Planet{} card",
+                }
+            },
+            cj_effect_spectral_chance = {
+                name = "Effect",
+                text = {
+                    "{C:green}#2# in #1#{} chance to give a {C:spectral}Spectral{} card",
+                }
+            },
+            cj_effect_mf_colour_chance = {
+                name = "Effect",
+                text = {
+                    "{C:green}#2# in #1#{} chance to give a {C:colourcard}Colour{} card",
+                }
+            },
+
+            cj_effect_joker_create = {
+                name = "Effect",
+                text = {
+                    "create a random {V:1}#1#{} Joker",
+                }
+            },
+
+
+            cj_missing_mod = {
+                name = "Effect",
+                text = {
+                    "{C:mult}ERROR | Mod not Found: #1#",
                 }
             },
 
@@ -142,6 +197,22 @@ return {
                 }
             },
 		},
+        Sleeve = {
+            sleeve_egjs_jimbos_sleeve = {
+                name = "JimbOS Sleeve",
+                text = {
+                    'Gain a {C:attention,T:c_egjs_js_basic}Joker Studio: Basic{}',
+                    'after each {C:attention}Boss Blind{}',
+                    'Start with {C:attention,T:v_egjs_license}Licence{} voucher',
+                }
+            },
+            sleeve_egjs_jimbos_sleeve_alt = {
+                name = "JimbOS Sleeve",
+                text = {
+                    'Start with {C:attention,T:v_egjs_upgrade}Upgrade{} voucher',
+                }
+            }
+        }
     },
     misc = {
         dictionary = {

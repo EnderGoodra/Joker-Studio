@@ -259,7 +259,7 @@ function JS_SetAtlasActive()
         local success, message NFS.write(Workshop.path..'assets/'..i..'x/custom/joker_active.png', data)
     end
 
-    G.ASSET_ATLAS["egjs_atlas_custom_active"].image = love.graphics.newImage('/mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})   
+    G.ASSET_ATLAS["egjs_atlas_custom_active"].image = love.graphics.newImage('/Mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})
 end
 
 function JS_GenerateImage(countX, countY)
@@ -406,12 +406,12 @@ end
 
 JS_ReloadAtlas = function(full)
     if not full then
-        G.ASSET_ATLAS["egjs_atlas_custom_active"].image = love.graphics.newImage('/mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})      
+        G.ASSET_ATLAS["egjs_atlas_custom_active"].image = love.graphics.newImage('/Mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})
     end
 
     if full then
         for i=1,5 do
-            G.ASSET_ATLAS["egjs_atlas_custom"..G.JS_ACTIVE_JOKER].image = love.graphics.newImage('/mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})    
+            G.ASSET_ATLAS["egjs_atlas_custom"..G.JS_ACTIVE_JOKER].image = love.graphics.newImage('/Mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})
         end
     end
 end

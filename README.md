@@ -31,4 +31,7 @@ You can re-edit Custom Jokers you've already made. Do note, however:
 - The values on a Custom Joker effect will be based on the tier of the used Studio card, potentially overwriting better values from a previously used higher tier Studio card.
 
 ## Purging Custom Jokers
-You can purge all Custom Jokers, reverting them to their initial, un-customized state through the mod config menu. Doing so will perform a brief game restart.
+You can purge all Custom Jokers through the mod config menu, reverting them to their initial unmodified state.
+
+## Cross-mod Support
+APIs for adding new conditions and effects are planned for a future update.

@@ -6,7 +6,7 @@
 	"description": "What, you're bored with such a \"limited\" set of Jokers?\nFine, then do it yourself",
 	"prefix": "egjs",
 	"main_file": "main.lua",
-	"priority": 0,
+	"priority": -10,
 	"badge_colour": "888888",
 	"badge_text_colour": "ffffff",
 	"version": "1.0.0a",

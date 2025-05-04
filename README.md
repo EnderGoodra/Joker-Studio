@@ -1,10 +1,13 @@
-# Joker Studio Mod
- The definitive DIY Balatro mod.
+![logo](https://github.com/user-attachments/assets/cea75976-2de2-4d35-b7f0-f33a139c5a5a)
+
+The definitive DIY Balatro mod.
 
 ## What is the Joker Studio Mod?
 This mod adds 5 new Custom Jokers, all of which lack abilities and graphics. *Why?* Because that's where **you** come in!
 
 ## Introducing: Studio Cards
+![collection](https://github.com/user-attachments/assets/8122a176-2867-4367-af1d-9eb06b62fcbd)
+
 Studio cards a new consumable type that are your method of creating Custom Jokers.
 There's 4 tiers of Studio cards:
 - Basic

@@ -331,7 +331,7 @@ end
 
 ReloadCustomJokerAtlas = function()
     for i=1,5 do 
-        G.ASSET_ATLAS["egjs_atlas_custom"..i].image = love.graphics.newImage('/mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker'..i..'.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})   
+        G.ASSET_ATLAS["egjs_atlas_custom"..i].image = love.graphics.newImage('/Mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker'..i..'.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})
     end
 end
 

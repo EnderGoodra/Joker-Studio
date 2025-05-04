@@ -10,7 +10,7 @@ SMODS.Voucher {
     loc_txt = {
         name = "License",
         text = {
-            "All {C:attention}Joker Studio: Basic{} received",
+            "All received {C:attention}Joker Studio: Basic{}",
             "are instead {C:attention}Joker Studio: Gold{}"
         }
     },
@@ -27,7 +27,7 @@ SMODS.Voucher {
     loc_txt = {
         name = "Upgrade",
         text = {
-            "All {C:attention}Joker Studio: Basic{} received",
+            "All received {C:attention}Joker Studio: Basic{}",
             "are instead {C:attention}Joker Studio: Platinum{}",
             "{C:green}#1# in #2#{} chance for {C:attention}Joker Studio: VIP{}"
         }

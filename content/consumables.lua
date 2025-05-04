@@ -22,7 +22,8 @@ SMODS.ConsumableType {
             text = { 'Placeholder' },
         },
     },
-    shop_rate = 0
+    shop_rate = 0,
+    collection_rows = { 4 }
     
 }
 
@@ -35,7 +36,7 @@ SMODS.Consumable {
         text = {
             "When used, opens the basic",
             "{s:1.4,E:1,C:attention}Joker Studio",
-            "{C:inactive}(Must a Joker slot free){}",
+            "{C:inactive}(Must have a Joker slot free){}",
         }
     },
     atlas = 'atlas_consumable',
@@ -75,7 +76,7 @@ SMODS.Consumable {
         text = {
             "When used, opens the {C:money}Gold{}",
             "{s:1.4,E:1,C:attention}Joker Studio",
-            "{C:inactive}(Must a Joker slot free){}",
+            "{C:inactive}(Must have a Joker slot free){}",
         }
     },
     atlas = 'atlas_consumable',
@@ -115,7 +116,7 @@ SMODS.Consumable {
         text = {
             "When used, opens the {C:planet}Platinum{}",
             "{s:1.4,E:1,C:attention}Joker Studio",
-            "{C:inactive}(Must a Joker slot free){}",
+            "{C:inactive}(Must have a Joker slot free){}",
         }
     },
     atlas = 'atlas_consumable',
@@ -155,7 +156,7 @@ SMODS.Consumable {
         text = {
             "When used, opens the {C:dark_edition,E:1}VIP{}",
             "{s:1.4,E:1,C:attention}Joker Studio",
-            "{C:inactive}(Must a Joker slot free){}",
+            "{C:inactive}(Must have a Joker slot free){}",
         }
     },
     atlas = 'atlas_consumable',
@@ -217,7 +218,7 @@ end
 --         text = {
 --             "When used, opens the {C:dark_edition,E:1}VIP{}",
 --             "{s:1.4,E:1,C:attention}Joker Studio",
---             "{C:inactive}(Must a Joker slot free){}",
+--             "{C:inactive}(Must have a Joker slot free){}",
 --         }
 --     },
 --     atlas = 'atlas_consumable',

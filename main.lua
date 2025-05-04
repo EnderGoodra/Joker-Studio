@@ -137,7 +137,7 @@ CustomJokerConditions = {
                 type = "card_create",
                 set = "Joker",
                 loc_key = "cj_effect_joker_create",
-                loc_col = { G.C.BLUE, G.C.BLUE, G.C.GREEN, G.C.RED },
+                loc_col = { G.C.RARITY.Common, G.C.RARITY.Common, G.C.RARITY.Uncommon, G.C.RARITY.Rare },
                 min_tier = 2,
                 order = 2,
                 amount = { "common", "common", "uncommon", "rare"},
@@ -262,12 +262,12 @@ CustomJokerConditions = {
     },
 }
 
-SMODS.Keybind {
-    key_pressed = "m",
-    action = function(self)
-        print(inspectDepth(Workshop.config))
-    end
-}
+-- SMODS.Keybind {
+--     key_pressed = "m",
+--     action = function(self)
+--         print(inspectDepth(Workshop.config))
+--     end
+-- }
 
 local openFiles = {
     "ui.lua",
@@ -275,7 +275,6 @@ local openFiles = {
     "consumables.lua",
     "decks.lua",
     "vouchers.lua",
-    -- "modifiers.lua",
     "tags.lua"
 }
 

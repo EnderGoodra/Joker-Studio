@@ -36,5 +36,104 @@ You can re-edit Custom Jokers you've already made. Do note, however:
 ## Purging Custom Jokers
 You can purge all Custom Jokers through the mod config menu, reverting them to their initial unmodified state.
 
-## Cross-mod Support
-APIs for adding new conditions and effects are planned for a future update.
+# Cross-mod Support
+
+Below are functions that can be added to your mods to create new conditions and effects. Any mods that wish to use the below functions must have a priority greater than **-10**.
+
+**Please note:** All below index values must be numerical, otherwise they are reset upon restarting the game.
+
+## `JokerStudio.addNewCondition(condition, condition_index)`
+Sets a new condition at position `condition_index` within the condition list.
+
+Conditions are defined as a table containing 3 values:
+- `loc_key (string)` - Localization key for the condition text.
+- `min_tier (number)` - The minimum tier of studio card needed for this option to be selectable. Defaults to 1 if not specified.
+- `effects (table)` - A table containing all effects relating to this condition. See further below for an example of an effect.
+
+Conditions also have 2 additional unused values:
+- `type (string)` - A unique identifier for this condition, currently unused.
+- `order (number)` - The order in which this condition appears in the selection menu, currently unused.
+
+
+## `JokerStudio.addNewEffect(effect, condition_index, effect_index)`
+Sets a new effect at position `effect_index` within an existing condition at position `condition_index`.
+
+Effects are defined as a table containing 3 values:
+- `loc_key (string)` - Localization key for the effect text.
+- `min_tier (number)` - The minimum tier of studio card needed for this option to be selectable. Defaults to 1 if not specified
+- `amount (table)` - A table containing 4 values, one per tier of Studio card.
+- `func (function)` - A function that contains the calculate logic for each effect.
+
+Effects have 2 additional unused values:
+- `type (string)` - A unique identifier for this condition, currently unused.
+- `order (number)` - The order in which this condition appears in the selection menu, currently unused.
+
+### Examples
+
+Condition structure
+```
+{
+    loc_key = "key",
+    min_tier = 1,
+    effects = {}
+}
+```
+
+Effect structure
+```
+{
+    loc_key = "key",
+    min_tier = 1,
+    amount = { 1, 2, 3, 4},
+    func = function(card, context, effect, amount) end
+}
+```
+
+Example of complete condition with effect:
+```
+{
+    loc_key = "key",
+    min_tier = 1,
+    effects = {
+        [1] = {
+            loc_key = "key",
+            min_tier = 1,
+            amount = { 1, 2, 3, 4},
+            func = function(card, context, effect, amount)
+                if context.joker_main then
+                    return {
+                        message = localize{type='variable',key='a_chips',vars={amount}},
+                        chip_mod = amount
+                    }
+                end
+            end
+        }
+    }
+}
+```
+
+Example of JokerStudio.addNewCondition usage:
+```
+if JokerStudio then
+    JokerStudio.addNewCondition({
+        loc_key = "key",
+        order = 3,
+        effects = {
+            [1] = {
+                type = "chips",
+                loc_key = "key",
+                order = 1,
+                amount = { 1, 2, 3, 4},
+                func = function(card, context, effect, amount)
+                    if context.joker_main then
+                        return {
+                            message = localize{type='variable',key='a_chips',vars={amount}},
+                            chip_mod = amount
+                        }
+                    end
+                end
+            }
+        }
+    }, 10)
+}
+```

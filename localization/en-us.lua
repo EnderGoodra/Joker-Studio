@@ -1,6 +1,20 @@
 return {
     descriptions = {
-		Other = {
+		Mod = {
+            egjs = {
+                name = "Joker Studio",
+                text = {
+                    "What, you're bored with such a {C:edition,E:1}limited{} set of Jokers?",
+                    "Here, why don't you take this and do it {C:attention}yourself{}?",
+                    " ",
+                    "Adds a Joker creator to Balatro, accessible",
+                    "through using Studio consumable cards.",
+                    " ",
+                    "Additional thanks: WilsontheWolf"
+                }
+            }
+        },
+        Other = {
             cj_not_created = {
                 name = "Not Created",
                 text = {
@@ -12,7 +26,7 @@ return {
             cj_condition_nil = {
                 name = "Condition",
                 text = {
-                    "When {E:1}???{},",
+                    "{C:mult}Error! Condition missing!",
                 }
             },
 
@@ -56,7 +70,7 @@ return {
             cj_effect_nil = {
                 name = "Effect",
                 text = {
-                    "gives {E:1}???{}",
+                    "{C:mult}Error! Effect missing!",
                 }
             },
 

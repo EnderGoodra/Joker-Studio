@@ -2,11 +2,11 @@
 --  Config Menu
 -- =============
 
-Workshop.config_tab = function()
+JokerStudio.config_tab = function()
     return {n = G.UIT.ROOT, config = {r = 0.1, minw = 4, minh = 4, align = "cm", padding = 0.2, colour = G.C.BLACK}, nodes = {
         {n=G.UIT.C, nodes = {
-            create_toggle({label = localize('conf_palette_lock'), ref_table = Workshop.config, ref_value = 'palette_lock', info = localize('conf_palette_lock_desc'), active_colour = Workshop.badge_colour, right = true}),
-            create_toggle({label = localize('conf_run_reset'), ref_table = Workshop.config, ref_value = 'run_reset', info = localize('conf_run_reset_desc'), active_colour = Workshop.badge_colour, right = true}),
+            create_toggle({label = localize('conf_palette_lock'), ref_table = JokerStudio.config, ref_value = 'palette_lock', info = localize('conf_palette_lock_desc'), active_colour = JokerStudio.badge_colour, right = true}),
+            create_toggle({label = localize('conf_run_reset'), ref_table = JokerStudio.config, ref_value = 'run_reset', info = localize('conf_run_reset_desc'), active_colour = JokerStudio.badge_colour, right = true}),
         }},
         {n=G.UIT.C, config = {align = "cm"}, nodes = {
             { n = G.UIT.R, config = {align = "cm"}, nodes = {
@@ -24,6 +24,10 @@ end
 
 G.FUNCS.JC_Purge_Jokers = function()
     ClearCustomJokerData()
+end
+
+JokerStudio.description_loc_vars = function()
+    return { background_colour = G.C.CLEAR, text_colour = G.C.WHITE, scale = 1.2}
 end
 
 
@@ -78,7 +82,7 @@ function JS_GeneratePalette()
             {n=G.UIT.T, config={text = 'Pen Colour', scale = 0.3*1, colour = G.C.UI.TEXT_LIGHT}}
         }},
     }
-    if G.JS_TIER == 1 and Workshop.config.palette_lock then
+    if G.JS_TIER == 1 and JokerStudio.config.palette_lock then
         table.insert(palette, { n = G.UIT.R, config = {padding = 0.1}, nodes = {
             { n = G.UIT.C, nodes = {
                 UIBox_button({ colour = HEX('ffffff'), button = "JS_Set_Pen", ref_table = {col = HEX('ffffff')}, label = { ' ' }, minw = 0.9, focus_args = { snap_to = true }}),
@@ -95,7 +99,7 @@ function JS_GeneratePalette()
                 UIBox_button({ colour = HEX('fd5f55'), button = "JS_Set_Pen", ref_table = {col = HEX('00000000')}, label = { 'X' }, minw = 0.9, focus_args = { snap_to = true }})
             }},
         }})
-    elseif G.JS_TIER == 2 and Workshop.config.palette_lock then
+    elseif G.JS_TIER == 2 and JokerStudio.config.palette_lock then
         table.insert(palette, { n = G.UIT.R, config = {padding = 0.1}, nodes = {
             { n = G.UIT.C, nodes = {
                 UIBox_button({ colour = HEX('fd5f55'), button = "JS_Set_Pen", ref_table = {col = HEX('fd5f55')}, label = { ' ' }, minw = 0.9, focus_args = { snap_to = true }}),
@@ -128,7 +132,7 @@ function JS_GeneratePalette()
                 UIBox_button({ colour = HEX('fd5f55'), button = "JS_Set_Pen", ref_table = {col = HEX('00000000')}, label = { 'X' }, minw = 0.9, focus_args = { snap_to = true }})
             }},
         }})
-    elseif G.JS_TIER == 3 and Workshop.config.palette_lock then
+    elseif G.JS_TIER == 3 and JokerStudio.config.palette_lock then
         table.insert(palette, { n = G.UIT.R, config = {padding = 0.1}, nodes = {
             { n = G.UIT.C, nodes = {
                 UIBox_button({ colour = HEX('fd5f55'), button = "JS_Set_Pen", ref_table = {col = HEX('fd5f55')}, label = { ' ' }, minw = 0.9, focus_args = { snap_to = true }}),
@@ -255,8 +259,8 @@ end
 
 function JS_SetAtlasActive()
     for i=1,2 do
-        local data, size = NFS.read(Workshop.path..'assets/'..i..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png')
-        local success, message NFS.write(Workshop.path..'assets/'..i..'x/custom/joker_active.png', data)
+        local data, size = NFS.read(JokerStudio.path..'assets/'..i..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png')
+        local success, message NFS.write(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png', data)
     end
 
     G.ASSET_ATLAS["egjs_atlas_custom_active"].image = love.graphics.newImage('/Mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})
@@ -274,7 +278,7 @@ end
 
 G.FUNCS.JS_Cancel = function()
     for i=1,2 do
-        NFS.remove(Workshop.path..'assets/'..i..'x/custom/joker_active.png')
+        NFS.remove(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png')
     end
     G.JS_MENU:remove()
     G.JS_ACTIVE_JOKER = 0
@@ -282,12 +286,12 @@ end
 
 G.FUNCS.JS_Save = function()
     for i=1,2 do
-        local data, size = NFS.read(Workshop.path..'assets/'..i..'x/custom/joker_active.png')
-        local success, message = NFS.write(Workshop.path..'assets/'..i..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png', data)
+        local data, size = NFS.read(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png')
+        local success, message = NFS.write(JokerStudio.path..'assets/'..i..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png', data)
     end
     JS_ReloadAtlas(true)
     for i=1,2 do
-        NFS.remove(Workshop.path..'assets/'..i..'x/custom/joker_active.png')
+        NFS.remove(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png')
     end
 
     G.JS_MENU:remove()
@@ -309,7 +313,7 @@ G.FUNCS.JS_Save = function()
     G.JA_MENU.alignment.offset.y = 0
     G.ROOM.jiggle = G.ROOM.jiggle + 1
     G.JA_MENU:align_to_major()
-    --SMODS.save_mod_config(Workshop)
+    --SMODS.save_mod_config(JokerStudio)
 
 end
 
@@ -335,8 +339,8 @@ G.FUNCS.JS_Clear = function()
 end
 
 JS_DrawCanvas = function(type)
-    local _data1X, err1x = NFS.newFileData( Workshop.path..'assets/1x/custom/joker_active.png')
-    local _data2X, err2x = NFS.newFileData( Workshop.path..'assets/2x/custom/joker_active.png')
+    local _data1X, err1x = NFS.newFileData( JokerStudio.path..'assets/1x/custom/joker_active.png')
+    local _data2X, err2x = NFS.newFileData( JokerStudio.path..'assets/2x/custom/joker_active.png')
     local center = {
         x = love.graphics.getWidth() / (G.TILESCALE * G.TILESIZE) / 2 - 1.08,
         y = love.graphics.getHeight() / (G.TILESCALE * G.TILESIZE) / 2 - 0.85,
@@ -376,8 +380,8 @@ JS_DrawCanvas = function(type)
         G.JS_UNDO[#G.JS_UNDO+1] = undoStep
         local filedata1x = _imageData1x:encode("png")
         local filedata2x = _imageData2x:encode("png")
-        NFS.write(Workshop.path..'assets/1x/custom/joker_active.png', filedata1x)
-        NFS.write(Workshop.path..'assets/2x/custom/joker_active.png', filedata2x)
+        NFS.write(JokerStudio.path..'assets/1x/custom/joker_active.png', filedata1x)
+        NFS.write(JokerStudio.path..'assets/2x/custom/joker_active.png', filedata2x)
         JS_ReloadAtlas(false)
     else
         if err1x then
@@ -565,9 +569,9 @@ function create_UIBox_JA_menu(card)
                                 colour = G.C.RED,
                                 no_pips = false,
                                 mid = {n=G.UIT.R, config={align = "br"}, nodes={
-                                    G.UIDEF.JA_text(CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].loc_key, nil)
+                                    G.UIDEF.JA_text(JokerStudio.CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].loc_key, nil)
                                     -- { n = G.UIT.C, config = { align = "cm"}, nodes = {
-                                    --     G.UIDEF.JA_text(CustomJokerConditions[G.JA_SELECT.CONDITION].loc_key, nil)
+                                    --     G.UIDEF.JA_text(JokerStudio.CustomJokerConditions[G.JA_SELECT.CONDITION].loc_key, nil)
                                     --     --{ n = G.UIT.O, config = {object = DynaText({string = localize{type ='name_text', key = blind_choice.config.key, set = 'Blind'}, colours = {G.C.WHITE},shadow = true, float = true,maxw = 2.2, scale = 0.45})}}
                                     -- }}
                                 }}
@@ -583,11 +587,11 @@ function create_UIBox_JA_menu(card)
                                 colour = G.C.RED,
                                 no_pips = false,
                                 mid = {n=G.UIT.R, config={align = "br"}, nodes={
-                                    G.UIDEF.JA_text(CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].loc_key, {
-                                        CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].amount[G.JM_TIER] or nil,
+                                    G.UIDEF.JA_text(JokerStudio.CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].loc_key, {
+                                        JokerStudio.CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].amount[G.JM_TIER] or nil,
                                         ''..(G.GAME and G.GAME.probabilities.normal or 1),
-                                        colours = {CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].loc_col
-                                            and CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].loc_col[G.JM_TIER]
+                                        colours = {JokerStudio.CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].loc_col
+                                            and JokerStudio.CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects[GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]].loc_col[G.JM_TIER]
                                             or {G.C.RED}}})
                                 }}
                             })
@@ -621,14 +625,14 @@ end
 G.FUNCS.JA_Save = function()
     JX_AddJoker()
 
-    Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].in_use = true
-    Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].condition = GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]
-    Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].effect = GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]
-    Workshop.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].tier = G.JS_TIER
+    JokerStudio.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].in_use = true
+    JokerStudio.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].condition = GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]
+    JokerStudio.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].effect = GetTierCompatibleEffects()[G.JA_SELECT.EFFECT]
+    JokerStudio.config.custom_jokers["joker"..G.JS_ACTIVE_JOKER].tier = G.JS_TIER
     G.JS_ACTIVE_JOKER = nil
     G.JA_MENU:remove()
     G.JA_SELECT = nil
-    SMODS.save_mod_config(Workshop)
+    SMODS.save_mod_config(JokerStudio)
 end
 
 function G.UIDEF.JA_text(text_key, loc_vars) 
@@ -650,7 +654,7 @@ end
 GetTierCompatibleConditions = function()
     local counter = 1
     local validPool = {}
-    for k,v in pairs(CustomJokerConditions) do
+    for k,v in pairs(JokerStudio.CustomJokerConditions) do
         if v ~= nil and (not v.min_tier or v.min_tier <= G.JM_TIER) and ((not v.dependency) or (v.dependency and next(SMODS.find_mod(v.dependency)))) then
             validPool[counter] = k
             counter = counter + 1
@@ -662,8 +666,8 @@ end
 GetTierCompatibleEffects = function()
     local counter = 1
     local validPool = {}
-    table.sort(CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects, function(a, b) return (a.order or 1) < (b.order or 1) end)
-    for k,v in pairs(CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects) do
+    table.sort(JokerStudio.CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects, function(a, b) return (a.order or 1) < (b.order or 1) end)
+    for k,v in pairs(JokerStudio.CustomJokerConditions[GetTierCompatibleConditions()[G.JA_SELECT.CONDITION]].effects) do
         if v ~= nil and (not v.min_tier or v.min_tier <= G.JM_TIER) and ((not v.dependency) or (v.dependency and next(SMODS.find_mod(v.dependency)))) then
             validPool[counter] = k
             counter = counter + 1

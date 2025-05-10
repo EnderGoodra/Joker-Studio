@@ -259,8 +259,8 @@ end
 
 function JS_SetAtlasActive()
     for i=1,2 do
-        local data, size = NFS.read(JokerStudio.path..'assets/'..i..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png')
-        local success, message NFS.write(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png', data)
+        local data, size = nfs.read(JokerStudio.path..'assets/'..i..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png')
+        local success, message nfs.write(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png', data)
     end
 
     G.ASSET_ATLAS["egjs_atlas_custom_active"].image = love.graphics.newImage('/Mods/'..FolderName..'/assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/custom/joker_active.png', {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling})
@@ -278,7 +278,7 @@ end
 
 G.FUNCS.JS_Cancel = function()
     for i=1,2 do
-        NFS.remove(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png')
+        nfs.remove(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png')
     end
     G.JS_MENU:remove()
     G.JS_ACTIVE_JOKER = 0
@@ -286,12 +286,12 @@ end
 
 G.FUNCS.JS_Save = function()
     for i=1,2 do
-        local data, size = NFS.read(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png')
-        local success, message = NFS.write(JokerStudio.path..'assets/'..i..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png', data)
+        local data, size = nfs.read(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png')
+        local success, message = nfs.write(JokerStudio.path..'assets/'..i..'x/custom/joker'..G.JS_ACTIVE_JOKER..'.png', data)
     end
     JS_ReloadAtlas(true)
     for i=1,2 do
-        NFS.remove(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png')
+        nfs.remove(JokerStudio.path..'assets/'..i..'x/custom/joker_active.png')
     end
 
     G.JS_MENU:remove()
@@ -339,8 +339,8 @@ G.FUNCS.JS_Clear = function()
 end
 
 JS_DrawCanvas = function(type)
-    local _data1X, err1x = NFS.newFileData( JokerStudio.path..'assets/1x/custom/joker_active.png')
-    local _data2X, err2x = NFS.newFileData( JokerStudio.path..'assets/2x/custom/joker_active.png')
+    local _data1X, err1x = nfs.newFileData( JokerStudio.path..'assets/1x/custom/joker_active.png')
+    local _data2X, err2x = nfs.newFileData( JokerStudio.path..'assets/2x/custom/joker_active.png')
     local center = {
         x = love.graphics.getWidth() / (G.TILESCALE * G.TILESIZE) / 2 - 1.08,
         y = love.graphics.getHeight() / (G.TILESCALE * G.TILESIZE) / 2 - 0.85,
@@ -353,7 +353,7 @@ JS_DrawCanvas = function(type)
         x = math.floor(math.min(cursor_point.x,7.1) / 7.1 * 71) + 1,
         y = math.floor(math.min(cursor_point.y,9.5) / 9.5 * 95) + 1
     }
-    if not err1x and not err2x then
+    if _data1X and _data2X then
         local _imageData1x = love.image.newImageData( _data1X )
         local _imageData2x = love.image.newImageData( _data2X )
 
@@ -380,8 +380,8 @@ JS_DrawCanvas = function(type)
         G.JS_UNDO[#G.JS_UNDO+1] = undoStep
         local filedata1x = _imageData1x:encode("png")
         local filedata2x = _imageData2x:encode("png")
-        NFS.write(JokerStudio.path..'assets/1x/custom/joker_active.png', filedata1x)
-        NFS.write(JokerStudio.path..'assets/2x/custom/joker_active.png', filedata2x)
+        nfs.write(JokerStudio.path..'assets/1x/custom/joker_active.png', filedata1x)
+        nfs.write(JokerStudio.path..'assets/2x/custom/joker_active.png', filedata2x)
         JS_ReloadAtlas(false)
     else
         if err1x then

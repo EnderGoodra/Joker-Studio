@@ -4,7 +4,8 @@
 --- ==============
 ---  LOCALIZATION
 --- ==============
-local NFS = require("nativefs")
+nfs = nativefs or require("nativefs")
+
 JokerStudio = SMODS.current_mod
 local _p = ""
 for i in string.gmatch(JokerStudio.path, '([^/]+)') do
@@ -511,8 +512,6 @@ JokerStudio.CustomJokerConditions = {
     },
 }
 
-JokerStudio.pendingList = {}
-
 JokerStudio.addNewCondition = function(new_condition, condition_index)
     if new_condition and condition_index then
         JokerStudio.CustomJokerConditions[condition_index] = new_condition
@@ -566,15 +565,15 @@ end
 
 ValidateCustomJokerFiles = function()
     for i=1,2 do
-        if not NFS.getInfo(JokerStudio.path..'assets/'..i..'x/custom') then
-            NFS.createDirectory(JokerStudio.path..'assets/'..i..'x/custom')
+        if not nfs.getInfo(JokerStudio.path..'assets/'..i..'x/custom') then
+            nfs.createDirectory(JokerStudio.path..'assets/'..i..'x/custom')
         end
 
         for j=1,5 do
-            local info = NFS.getInfo(JokerStudio.path..'assets/'..i..'x/custom/joker'..j..'.png')
+            local info = nfs.getInfo(JokerStudio.path..'assets/'..i..'x/custom/joker'..j..'.png')
             if not info or info.size == 0 or info.size == nil then
-                local data, size = NFS.read(JokerStudio.path..'assets/'..i..'x/custom_joker_base.png')
-                local success, message NFS.write(JokerStudio.path..'assets/'..i..'x/custom/joker'..j..'.png', data)
+                local data, size = nfs.read(JokerStudio.path..'assets/'..i..'x/custom_joker_base.png')
+                local success, message nfs.write(JokerStudio.path..'assets/'..i..'x/custom/joker'..j..'.png', data)
             end
         end
     end
@@ -582,10 +581,10 @@ end
 
 ClearCustomJokerData = function()
     for i=1,2 do
-        if NFS.getInfo(JokerStudio.path..'assets/'..i..'x/custom') then
+        if nfs.getInfo(JokerStudio.path..'assets/'..i..'x/custom') then
             for j=1,5 do
-                if NFS.getInfo(JokerStudio.path..'assets/'..i..'x/custom/joker'..j..'.png') then
-                    local was_removed = NFS.remove(JokerStudio.path..'assets/'..i..'x/custom/joker'..j..'.png')
+                if nfs.getInfo(JokerStudio.path..'assets/'..i..'x/custom/joker'..j..'.png') then
+                    local was_removed = nfs.remove(JokerStudio.path..'assets/'..i..'x/custom/joker'..j..'.png')
                     if not was_removed then
                         do_restart = false
                         sendErrorMessage("Failed to delete: assets/"..i.."x/custom/joker"..j..".png\nMake sure the file isn't open and try again")

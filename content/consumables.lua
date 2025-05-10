@@ -1,8 +1,6 @@
 --- =============
 ---  Consumables
 --- =============
-local NFS = require("nativefs")
-
 SMODS.Atlas {
     key = "atlas_consumable",
     path = "joker_studio.png",
